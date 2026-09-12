@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AquaPura Filtración</title>
 <meta name="description" content="Venta de filtros y sistemas de purificación de agua para hogar y negocio.">
 <meta name="color-scheme" content="light">
@@ -258,6 +260,26 @@ section{padding:clamp(2.6rem,6vw,4.6rem) 0}
 .faq summary::after{content:"+";font-family:"Bricolage Grotesque";font-size:1.35rem;line-height:1;color:var(--accent)}
 .faq details[open] summary::after{content:"\2013"}
 .faq details p{padding:0 1.15rem 1.1rem;color:var(--ink-soft);font-size:.95rem;margin:0}
+/* ajustes para teléfono */
+@media(max-width:600px){
+  .wrap{width:90vw}
+  .hero{padding:1.5rem 0 1.2rem}
+  .hero-grid{gap:1.5rem}
+  .hero h1{font-size:2.15rem}
+  .ba{max-height:62vh;margin-inline:auto;max-width:340px}
+  section{padding:2.2rem 0}
+  .sec-head{margin-bottom:1.5rem}
+  .sec-head h2{font-size:1.55rem}
+  .install{padding:1.4rem}
+  .final-cta{padding:1.8rem 1.3rem}
+  .cut-svg{max-width:300px;margin-inline:auto}
+  .wa-float{right:12px;bottom:12px}
+  .btn{font-size:.98rem}
+}
+@media(max-width:380px){
+  .grid-media{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:1.95rem}
+}
 
 footer{border-top:1px solid var(--line);background:var(--surface)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;padding:2.6rem 0 1.4rem}
