@@ -1,0 +1,879 @@
+<title>AquaPura Filtración</title>
+<meta name="description" content="Venta de filtros y sistemas de purificación de agua para hogar y negocio.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#ffffff;
+  --surface:#ffffff;
+  --surface-2:#f4f7f9;
+  --band:#eef3f6;
+  --ink:#0e2733;
+  --ink-soft:#51666f;
+  --line:#e3e9ed;
+  --accent:#0e7bb8;
+  --accent-deep:#0a5d8e;
+  --water:#2aa7dd;
+  --wa:#22a45b;
+  --wa-deep:#1b8b4d;
+  --navy:#0b2230;
+  --gold:#e3a52c;
+  --shadow:rgba(14,39,51,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Figtree",sans-serif;line-height:1.06;text-wrap:balance;margin:0;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1140px,92vw);margin-inline:auto}
+.eyebrow{font-family:"Spline Sans Mono",monospace;font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.mono{font-family:"Spline Sans Mono",monospace}
+
+.btn{display:inline-flex;align-items:center;gap:.5em;border-radius:999px;padding:.82em 1.4em;font-family:"Figtree";font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 20px -8px var(--wa)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 14px 26px -10px var(--wa);background:var(--wa-deep)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);background:var(--accent-deep)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep)}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:.55em;font-family:"Bricolage Grotesque";font-weight:800;font-size:1.28rem;letter-spacing:-.02em;text-decoration:none;line-height:1}
+.brand small{display:block;font-weight:600;font-size:.6rem;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;font-family:"Spline Sans Mono";margin-top:2px}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{text-decoration:none;font-weight:500;color:var(--ink-soft);font-size:.97rem}
+.nav-links a:hover{color:var(--accent-deep)}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* hero */
+.hero{padding:clamp(2.2rem,5vw,4rem) 0 clamp(1.6rem,3vw,2.4rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,4vw,3.2rem);align-items:center}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.3rem,5.2vw,3.6rem);font-weight:800;margin:.5rem 0 .9rem}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{font-size:1.12rem;color:var(--ink-soft);max-width:36ch}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.5rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.chip{display:inline-flex;align-items:center;gap:.45em;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:.42em .85em;font-size:.85rem;font-weight:500;color:var(--ink-soft)}
+.chip svg{color:var(--accent)}
+
+.ba{position:relative;aspect-ratio:1000/1497;max-height:560px;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -30px var(--shadow);user-select:none;touch-action:none;--pos:50%}
+.ba .layer{position:absolute;inset:0}
+.ba .layer img{width:100%;height:100%;object-fit:cover}
+.ba .before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba .before img{filter:none;-webkit-mask:none;mask:none}
+.ba .tag{position:absolute;top:14px;font-family:"Spline Sans Mono";font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.34em .7em;border-radius:7px;color:#fff}
+.ba .tag-b{left:14px;background:rgba(74,54,20,.82)}
+.ba .tag-a{right:14px;background:rgba(10,93,142,.82)}
+.ba .divider{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;transform:translateX(-1px);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.ba .handle{position:absolute;top:50%;left:var(--pos);width:46px;height:46px;transform:translate(-50%,-50%);background:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.32);cursor:ew-resize;color:var(--accent-deep)}
+.ba .handle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* trust strip */
+.trust{border-block:1px solid var(--line);background:var(--surface-2)}
+.trust .row{display:flex;flex-wrap:wrap;gap:1.4rem 2.4rem;justify-content:center;align-items:center;padding:1rem 0}
+.trust span{display:inline-flex;align-items:center;gap:.5em;font-size:.92rem;font-weight:600;color:var(--ink-soft)}
+.trust svg{color:var(--accent)}
+
+section{padding:clamp(2.6rem,6vw,4.6rem) 0}
+.sec-head{max-width:58ch;margin-bottom:2.1rem}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);margin:.4rem 0 .6rem}
+.sec-head p{color:var(--ink-soft);font-size:1.05rem}
+
+/* products */
+.grid-prod{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:900px){.grid-prod{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid-prod{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 44px -26px var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.card .art{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;border-bottom:1px solid var(--line);padding:16px}
+.card .art img{width:100%;height:100%;object-fit:contain}
+.card .body{padding:1.15rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.card h3{font-size:1.14rem}
+.card .desc{color:var(--ink-soft);font-size:.94rem;flex:1}
+.specs{display:flex;flex-wrap:wrap;gap:.35rem}
+.spec{font-family:"Spline Sans Mono";font-size:.7rem;font-weight:600;background:color-mix(in srgb,var(--accent) 10%,#fff);color:var(--accent-deep);border-radius:6px;padding:.28em .55em}
+.card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem;gap:.5rem}
+.card .foot .price{font-family:"Spline Sans Mono";font-size:.8rem;color:var(--ink-soft)}
+.mini-wa{display:inline-flex;align-items:center;gap:.4em;font-weight:700;font-size:.88rem;color:#fff;background:var(--wa);text-decoration:none;border-radius:999px;padding:.5em .9em;white-space:nowrap}
+.mini-wa:hover{background:var(--wa-deep)}
+
+/* house */
+.house-band{background:var(--band)}
+.house-wrap{position:relative;max-width:820px;margin-inline:auto}
+.hotspot{position:absolute;width:36px;height:36px;border-radius:50%;border:3px solid #fff;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:700;font-size:.98rem;display:grid;place-items:center;cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 4px 12px rgba(0,0,0,.25);animation:pulse 2.6s ease-out infinite}
+.hotspot:hover,.hotspot.active{background:var(--accent-deep);transform:translate(-50%,-50%) scale(1.12)}
+.hotspot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@keyframes pulse{0%{box-shadow:0 4px 12px rgba(0,0,0,.25),0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 4px 12px rgba(0,0,0,.25),0 0 0 14px transparent}100%{box-shadow:0 4px 12px rgba(0,0,0,.25),0 0 0 0 transparent}}
+@media(prefers-reduced-motion:reduce){.hotspot{animation:none}}
+.spot-card{margin-top:1.3rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.15rem 1.3rem;min-height:96px;display:flex;gap:1rem;align-items:flex-start}
+.spot-card .num{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:700;display:grid;place-items:center}
+.spot-card h4{margin:.1rem 0 .25rem;font-size:1.1rem}
+.spot-card p{color:var(--ink-soft);font-size:.96rem}
+
+/* stages */
+.stages{background:var(--navy);color:#eaf6f7}
+.stages .eyebrow{color:var(--water)}
+.stages .sec-head h2{color:#fff}
+.stages .sec-head p{color:#a9c6cd}
+.stage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:900px){.stage-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.stage-grid{grid-template-columns:1fr}}
+.stage{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:1.3rem 1.25rem}
+.stage .n{font-family:"Spline Sans Mono";font-size:.76rem;font-weight:600;color:var(--water);letter-spacing:.1em}
+.stage h4{font-size:1.12rem;margin:.55rem 0 .5rem;color:#fff}
+.stage p{color:#b7d2d8;font-size:.92rem}
+.stage .ico{width:38px;height:38px;color:var(--water);margin-bottom:.3rem}
+.stage.final{background:linear-gradient(155deg,var(--accent-deep),var(--accent));border-color:transparent}
+.stage.final .n,.stage.final p{color:rgba(255,255,255,.92)}
+.stage.final .ico{color:#fff}
+
+/* install */
+.install{background:linear-gradient(150deg,var(--accent-deep),var(--accent));color:#fff;border-radius:24px;padding:clamp(1.6rem,4vw,2.6rem);display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center}
+@media(max-width:760px){.install{grid-template-columns:1fr}}
+.install .badge{display:inline-flex;align-items:center;gap:.5em;background:var(--gold);color:#3a2c07;font-weight:700;font-family:"Spline Sans Mono";font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.42em .8em;border-radius:8px}
+.install h2{color:#fff;font-size:clamp(1.6rem,3.4vw,2.3rem);margin:.9rem 0 .7rem}
+.install p{color:rgba(255,255,255,.92)}
+.install ul{list-style:none;padding:0;margin:.4rem 0 0;display:grid;gap:.6rem}
+.install li{display:flex;gap:.6em;align-items:flex-start;background:rgba(255,255,255,.13);border-radius:12px;padding:.7rem .9rem;font-size:.92rem}
+
+/* uses */
+.uses{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:720px){.uses{grid-template-columns:1fr}}
+.use{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:1.7rem;display:flex;flex-direction:column;gap:.7rem}
+.use .ico{width:46px;height:46px;border-radius:12px;background:color-mix(in srgb,var(--accent) 12%,#fff);color:var(--accent-deep);display:grid;place-items:center}
+.use h3{font-size:1.3rem}
+.use p{color:var(--ink-soft);font-size:.97rem}
+.use ul{margin:.2rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.94rem;display:grid;gap:.3rem}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;text-align:center}
+@media(max-width:640px){.stats{grid-template-columns:1fr;gap:.7rem}}
+.stat{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:1.7rem 1rem}
+.stat .big{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(2.2rem,5vw,3rem);color:var(--accent);line-height:1}
+.stat .lbl{color:var(--ink-soft);font-size:.94rem;margin-top:.4rem}
+
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:800px){.tgrid{grid-template-columns:1fr}}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.4rem}
+.stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:.6rem}
+.tcard p{font-size:1rem}
+.tcard .who{margin-top:.9rem;font-weight:700;font-size:.92rem}
+.tcard .who span{display:block;font-weight:500;color:var(--ink-soft);font-size:.84rem}
+
+/* final */
+.final-cta{background:linear-gradient(150deg,var(--navy),#123246);color:#fff;border-radius:26px;padding:clamp(2rem,5vw,3.4rem);text-align:center}
+.final-cta .eyebrow{color:var(--water)}
+.final-cta h2{color:#fff;font-size:clamp(1.8rem,4vw,2.7rem);margin:.5rem 0 .6rem}
+.final-cta p{color:#b7d2d8;max-width:46ch;margin:0 auto 1.6rem}
+
+/* media grid */
+.grid-media{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+@media(max-width:900px){.grid-media{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.grid-media{grid-template-columns:repeat(2,1fr)}}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center}
+.mcard .art{aspect-ratio:1/1;background:#fff;display:grid;place-items:center;padding:10px;border-bottom:1px solid var(--line)}
+.mcard .art img{width:100%;height:100%;object-fit:contain}
+.mcard .b{padding:.85rem .75rem 1rem}
+.mcard h4{font-size:1rem;margin-bottom:.2rem}
+.mcard p{font-size:.82rem;color:var(--ink-soft);line-height:1.4}
+.media-cta{text-align:center;margin-top:1.6rem}
+
+/* cutaway */
+.cut-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.4rem,4vw,2.8rem);align-items:center}
+@media(max-width:820px){.cut-grid{grid-template-columns:1fr;justify-items:center}}
+.cut-svg{max-width:400px;width:100%;height:auto;display:block;border-radius:14px}
+.cut-legend{list-style:none;margin:0;padding:0;display:grid;gap:.75rem;width:100%}
+.cut-legend li{display:flex;gap:.9rem;align-items:flex-start}
+.cut-legend .n{flex:0 0 auto;width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:700;display:grid;place-items:center;font-size:.95rem}
+.cut-legend h4{font-size:1.03rem;margin-bottom:.1rem}
+.cut-legend p{color:var(--ink-soft);font-size:.9rem}
+
+/* clickable product art + detail */
+.card .art svg.box-art{width:100%;height:100%;object-fit:contain}
+.card .art.clickable{cursor:pointer;position:relative}
+.card .art.clickable:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.tap-hint{position:absolute;bottom:8px;right:8px;background:var(--accent);color:#fff;font-family:"Spline Sans Mono";font-size:.62rem;font-weight:600;letter-spacing:.04em;padding:.32em .55em;border-radius:6px;opacity:.94;pointer-events:none}
+.mini-detail{border:0;cursor:pointer;background:var(--accent);color:#fff}
+.mini-detail:hover{background:var(--accent-deep)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:1.2rem}
+.modal[hidden]{display:none}
+.modal-backdrop{position:absolute;inset:0;background:rgba(8,26,34,.55);backdrop-filter:blur(3px)}
+.modal-card{position:relative;background:var(--surface);border-radius:20px;max-width:760px;width:100%;max-height:88vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 40px 90px -30px rgba(0,0,0,.55)}
+@media(max-width:640px){.modal-card{grid-template-columns:1fr}}
+.modal-media{background:#eef6f8;display:grid;place-items:center;padding:26px;border-right:1px solid var(--line)}
+@media(max-width:640px){.modal-media{border-right:0;border-bottom:1px solid var(--line);padding:20px}}
+.modal-media svg,.modal-media img{width:100%;max-width:280px;height:auto}
+.modal-body{padding:1.7rem 1.7rem 1.9rem}
+.modal-body h3{font-size:1.5rem;margin:.3rem 0 .7rem}
+.modal-x{position:absolute;top:10px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:var(--surface);color:var(--ink);font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px var(--shadow)}
+.modal-x:hover{background:var(--surface-2)}
+.pm-lead{color:var(--ink-soft);font-size:1rem}
+.pm-sub{font-weight:700;margin:1.1rem 0 .45rem;font-family:"Bricolage Grotesque"}
+.pm-feat{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.pm-feat li{display:flex;gap:.55em;align-items:flex-start;font-size:.95rem}
+.pm-feat svg{color:var(--accent);flex:0 0 auto;margin-top:4px}
+@media(prefers-reduced-motion:no-preference){.modal-card{animation:pop .2s ease}@keyframes pop{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}}
+.pm-gallery{display:grid;gap:12px;width:100%}
+.pm-gallery figure{margin:0}
+.pm-gallery svg,.pm-gallery img{width:100%;max-width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:10px;display:block}
+.pm-gallery figcaption{font-family:"Spline Sans Mono";font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-align:center;margin-top:5px}
+/* floating whatsapp */
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:60;display:inline-flex;align-items:center;gap:.5em;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;padding:.85em 1.15em;border-radius:999px;box-shadow:0 12px 28px -8px rgba(0,0,0,.45)}
+.wa-float:hover{background:var(--wa-deep)}
+.wa-float .lbl{font-size:.95rem}
+@media(max-width:520px){.wa-float{padding:.9em}.wa-float .lbl{display:none}}
+/* steps */
+.tcard .stepn{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;font-family:"Bricolage Grotesque";font-weight:700;display:grid;place-items:center;font-size:1.25rem;margin-bottom:.7rem}
+.tcard h4{font-size:1.12rem;margin-bottom:.3rem}
+/* info (pagos/envíos/garantía/repuestos) */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+@media(max-width:860px){.info-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.info-grid{grid-template-columns:1fr}}
+.info{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:1.4rem}
+.info .ico{width:44px;height:44px;border-radius:12px;background:color-mix(in srgb,var(--accent) 12%,#fff);color:var(--accent-deep);display:grid;place-items:center;margin-bottom:.7rem}
+.info h4{font-size:1.06rem;margin-bottom:.35rem}
+.info p{color:var(--ink-soft);font-size:.92rem}
+.info .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.65rem}
+.info .tag{font-family:"Spline Sans Mono";font-size:.66rem;font-weight:600;background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line);border-radius:6px;padding:.28em .5em}
+/* faq */
+.faq{max-width:760px;margin-inline:auto;display:grid;gap:.6rem}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.faq summary{cursor:pointer;padding:1rem 1.15rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:"Bricolage Grotesque";font-size:1.35rem;line-height:1;color:var(--accent)}
+.faq details[open] summary::after{content:"\2013"}
+.faq details p{padding:0 1.15rem 1.1rem;color:var(--ink-soft);font-size:.95rem;margin:0}
+
+footer{border-top:1px solid var(--line);background:var(--surface)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;padding:2.6rem 0 1.4rem}
+@media(max-width:720px){.foot-grid{grid-template-columns:1fr;gap:1.4rem}}
+.foot-grid h5{font-size:1rem;margin:0 0 .7rem}
+.foot-grid a,.foot-grid p{color:var(--ink-soft);text-decoration:none;font-size:.94rem;display:block;margin-bottom:.35rem}
+.foot-grid a:hover{color:var(--accent-deep)}
+.foot-bottom{border-top:1px solid var(--line);padding:1.1rem 0;font-size:.82rem;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.note{font-family:"Spline Sans Mono";font-size:.72rem;color:var(--ink-soft)}
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5C12 2.5 5 10 5 15a7 7 0 0 0 14 0c0-5-7-12.5-7-12.5Z" fill="var(--accent)"/><path d="M9 15a3 3 0 0 0 3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>AquaPura<small>Filtración de agua</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#productos">Productos</a>
+      <a href="#casa">En tu casa</a>
+      <a href="#etapas">Cómo funciona</a>
+      <a href="#materiales">Materiales</a>
+      <a href="#usos">Hogar y negocio</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-wa" href="https://wa.me/584147676618?text=Hola,%20quiero%20información%20sobre%20los%20filtros%20de%20agua" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7a11.7 11.7 0 0 1-4.9-4.3c-.4-.6-.9-1.5-.9-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.7 1.2 1.5 1.7 2.6 2.3.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.3.1.6-.1 1Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<a id="top"></a>
+<main class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Agua potable · Hogar y negocio</span>
+      <h1>El agua de tu casa, <em>cristalina y segura</em>.</h1>
+      <p class="lead">Sistemas de filtración y ósmosis inversa que eliminan sedimentos, cloro, sarro y microorganismos. Para tu casa o tu negocio.</p>
+      <div class="hero-cta">
+        <a class="btn btn-wa" href="https://wa.me/584147676618?text=Hola,%20quiero%20un%20presupuesto%20de%20filtros%20de%20agua" target="_blank" rel="noopener">Pedir presupuesto</a>
+        <a class="btn btn-ghost" href="#productos">Ver productos</a>
+      </div>
+      <div class="chips">
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>3 a 7 etapas de filtración</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Fáciles de instalar</span>
+        <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Casa y comercio</span>
+      </div>
+    </div>
+
+    <div class="ba" id="ba" aria-label="Compara el agua antes y después de filtrar">
+      <div class="layer after"><img src="img/glass.jpg" alt="Vaso de agua cristalina filtrada"></div>
+      <div class="layer before"><img src="img/glass-antes.jpg" alt="Vaso de agua sin filtrar, turbia"></div>
+      <span class="tag tag-b">Antes</span>
+      <span class="tag tag-a">Después</span>
+      <div class="divider"></div>
+      <div class="handle" id="baHandle" role="slider" tabindex="0" aria-label="Arrastra para comparar el agua" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7-4 5 4 5M15 7l4 5-4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="trust">
+  <div class="wrap row">
+    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Fáciles de instalar</span>
+    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Repuestos disponibles</span>
+    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>3 a 7 etapas</span>
+    <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>Asesoría por WhatsApp</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="productos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Catálogo</span>
+      <h2>Sistemas para cada necesidad</h2>
+      <p>Desde un purificador bajo el fregadero hasta filtros de tanque para toda la vivienda o tu negocio. Escríbenos y te armamos el sistema ideal.</p>
+    </div>
+    <div class="grid-prod">
+
+      <article class="card">
+        <div class="art clickable" data-modal="compacto" role="button" tabindex="0" aria-label="Ver detalles del Sistema Ósmosis Compacto">
+          <img src="img/aguatogo-box.webp" alt="Sistema de ósmosis compacto aguatogo, caja turquesa">
+          <span class="tap-hint">Toca para ver +</span>
+        </div>
+        <div class="body">
+          <h3>Sistema Ósmosis Compacto</h3>
+          <p class="desc">Equipo de ósmosis inversa tipo caja: bomba, membrana, mineralizador y todas las etapas integradas en una sola carcasa. Más caudal y agua mineralizada.</p>
+          <div class="specs"><span class="spec">CAJA COMPACTA</span><span class="spec">CON BOMBA</span><span class="spec">MINERALIZADOR</span></div>
+          <div class="foot"><span class="price">$220</span><button class="mini-wa mini-detail" data-modal="compacto" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art clickable" data-modal="osmosis6" role="button" tabindex="0" aria-label="Ver detalles: Ósmosis Inversa 6 etapas"><img src="img/ro5.jpg" alt="Sistema de ósmosis inversa de 6 etapas con tanque"><span class="tap-hint">Toca para ver +</span></div>
+        <div class="body">
+          <h3>Ósmosis Inversa 6 etapas</h3>
+          <p class="desc">Seis etapas: sedimentos, carbón granular, carbón en bloque, membrana, post-filtro y mineralizador. Con tanque de almacenamiento y grifo cuello de cisne.</p>
+          <div class="specs"><span class="spec">6 ETAPAS</span><span class="spec">MINERALIZADOR</span><span class="spec">+ TANQUE</span></div>
+          <div class="foot"><span class="price">$150</span><button class="mini-wa mini-detail" data-modal="osmosis6" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art clickable" data-modal="purificador3" role="button" tabindex="0" aria-label="Ver detalles: Purificador bajo fregadero"><img src="img/tri3.jpg" alt="Purificador bajo fregadero de 3 etapas con grifo"><span class="tap-hint">Toca para ver +</span></div>
+        <div class="body">
+          <h3>Purificador bajo fregadero</h3>
+          <p class="desc">Tres etapas en carcasa: sedimentos, carbón activado y pulido final. Grifo de acero inoxidable incluido.</p>
+          <div class="specs"><span class="spec">3 ETAPAS</span><span class="spec">BAJO FREGADERO</span><span class="spec">GRIFO INOX</span></div>
+          <div class="foot"><span class="price">$75</span><button class="mini-wa mini-detail" data-modal="purificador3" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art clickable" data-modal="filtro1054" role="button" tabindex="0" aria-label="Ver detalles: Filtro Purificador 10x54"><img src="img/tank.jpg" alt="Filtro purificador de tanque azul 10x54"><span class="tap-hint">Toca para ver +</span></div>
+        <div class="body">
+          <h3>Filtro Purificador 10×54</h3>
+          <p class="desc">Tanque FRP con válvula 3/4 y material filtrante. Elimina sedimentos, químicos y microorganismos. Se instala en la entrada del agua de la casa.</p>
+          <div class="specs"><span class="spec">10×54</span><span class="spec">VÁLVULA 3/4</span><span class="spec">MATERIAL INCL.</span></div>
+          <div class="foot"><span class="price">$130</span><button class="mini-wa mini-detail" data-modal="filtro1054" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art clickable" data-modal="combo" role="button" tabindex="0" aria-label="Ver detalles: Combo Desbarrador + Purificador"><img src="img/combo.jpg" alt="Combo de dos filtros: desbarrador y purificador"><span class="tap-hint">Toca para ver +</span></div>
+        <div class="body">
+          <h3>Combo Desbarrador + Purificador</h3>
+          <p class="desc">Dos tanques FRP 10×54 con válvulas plateadas. Desbarrador (grava, arenilla, sílice) y purificante (carbón). Saco de 18 kg.</p>
+          <div class="specs"><span class="spec">2 TANQUES</span><span class="spec">2 VÁLVULAS</span><span class="spec">SACO 18KG</span></div>
+          <div class="foot"><span class="price">$240</span><button class="mini-wa mini-detail" data-modal="combo" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art clickable" data-modal="tanques" role="button" tabindex="0" aria-label="Ver detalles: Tanques FRP"><img src="img/tanks.jpg" alt="Tanques FRP de fibra en varios tamaños"><span class="tap-hint">Toca para ver +</span></div>
+        <div class="body">
+          <h3>Tanques FRP</h3>
+          <p class="desc">Tanques de fibra 9×35 y 10×54 para armar tu propio sistema de filtración a la medida.</p>
+          <div class="specs"><span class="spec">FRP</span><span class="spec">9×35</span><span class="spec">10×54</span></div>
+          <div class="foot"><span class="price">desde $60</span><button class="mini-wa mini-detail" data-modal="tanques" type="button">Ver detalles</button></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOUSE -->
+<section class="house-band" id="casa">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Mira por dentro</span>
+      <h2>Dónde vive cada filtro en tu casa</h2>
+      <p>Toca los puntos para ver qué equipo va en cada lugar: desde la entrada del agua hasta el grifo de la cocina.</p>
+    </div>
+    <div class="house-wrap">
+      <svg viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block" role="img" aria-label="Corte de una casa mostrando dónde van los filtros">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcebf3"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="820" height="440" fill="url(#sky)"/>
+        <rect x="0" y="392" width="820" height="48" fill="#e2ecf1"/>
+        <rect x="150" y="150" width="520" height="245" fill="#ffffff" stroke="#c9d7de" stroke-width="3"/>
+        <path d="M120 150 L410 45 L700 150 Z" fill="#cfe0ea" stroke="#c9d7de" stroke-width="3"/>
+        <line x1="410" y1="150" x2="410" y2="395" stroke="#dbe6ec" stroke-width="2"/>
+        <rect x="470" y="300" width="170" height="18" fill="#bcd3df"/>
+        <rect x="470" y="318" width="170" height="77" fill="#f1f6f9" stroke="#dbe6ec" stroke-width="2"/>
+        <rect x="486" y="334" width="30" height="48" rx="3" fill="var(--accent)"/>
+        <rect x="520" y="342" width="9" height="40" rx="3" fill="#dfeef2" stroke="var(--accent-deep)"/>
+        <rect x="533" y="342" width="9" height="40" rx="3" fill="#dfeef2" stroke="var(--accent-deep)"/>
+        <rect x="546" y="342" width="9" height="40" rx="3" fill="#dfeef2" stroke="var(--accent-deep)"/>
+        <path d="M560 300 C560 280 585 280 585 300" fill="none" stroke="#7d949e" stroke-width="4"/>
+        <line x1="560" y1="300" x2="560" y2="290" stroke="#7d949e" stroke-width="4"/>
+        <rect x="205" y="250" width="42" height="140" rx="18" fill="var(--water)" stroke="var(--accent-deep)" stroke-width="2"/>
+        <rect x="255" y="250" width="42" height="140" rx="18" fill="var(--water)" stroke="var(--accent-deep)" stroke-width="2"/>
+        <rect x="212" y="240" width="28" height="16" rx="4" fill="#7d949e"/>
+        <rect x="262" y="240" width="28" height="16" rx="4" fill="#7d949e"/>
+        <path d="M150 360 H205 M247 320 H255" stroke="var(--accent-deep)" stroke-width="4" fill="none"/>
+        <rect x="330" y="200" width="55" height="55" fill="#dcebf3" stroke="#c9d7de" stroke-width="2"/>
+        <line x1="357" y1="200" x2="357" y2="255" stroke="#c9d7de" stroke-width="1.5"/>
+        <line x1="330" y1="227" x2="385" y2="227" stroke="#c9d7de" stroke-width="1.5"/>
+      </svg>
+      <button class="hotspot" style="left:31%;top:73%" data-spot="0" aria-label="Filtros de entrada">1</button>
+      <button class="hotspot" style="left:63%;top:82%" data-spot="1" aria-label="Purificador bajo fregadero">2</button>
+      <button class="hotspot" style="left:70%;top:66%" data-spot="2" aria-label="Grifo de agua filtrada">3</button>
+    </div>
+    <div class="spot-card" id="spotCard" aria-live="polite">
+      <div class="num">1</div>
+      <div>
+        <h4>Filtros de entrada — Combo desbarrador + purificador</h4>
+        <p>Dos tanques FRP 10×54 en la entrada del agua: el primero retiene arena, óxido y sedimentos; el segundo purifica con carbón. Protegen toda la casa y las tuberías.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGES -->
+<section class="stages" id="etapas">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cómo funciona · Ósmosis inversa</span>
+      <h2>Las 6 etapas de la ósmosis inversa</h2>
+      <p>Así trabaja por dentro el sistema de ósmosis: el agua pasa etapa por etapa hasta salir pura y con minerales.</p>
+    </div>
+    <div class="stage-grid">
+      <div class="stage">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="2 3"/></svg>
+        <div class="n">ETAPA 01</div>
+        <h4>Sedimentos</h4>
+        <p>Retiene partículas grandes como arena, tierra, óxido y polvo para proteger el equipo.</p>
+      </div>
+      <div class="stage">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="14" cy="9" r="1.1" fill="currentColor"/><circle cx="13" cy="14" r="1.5" fill="currentColor"/><circle cx="9" cy="14" r="1" fill="currentColor"/></svg>
+        <div class="n">ETAPA 02</div>
+        <h4>Carbón granular</h4>
+        <p>Elimina el cloro, químicos y sustancias que causan malos olores y sabores en el agua.</p>
+      </div>
+      <div class="stage">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M6 8l6-3 6 3M6 16l6 3 6-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="n">ETAPA 03</div>
+        <h4>Carbón en bloque</h4>
+        <p>Refuerza la filtración de químicos y atrapa impurezas microscópicas antes de la membrana.</p>
+      </div>
+      <div class="stage final">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="n">ETAPA 04</div>
+        <h4>Membrana de ósmosis inversa</h4>
+        <p>El corazón del sistema: elimina hasta el 99% de metales pesados, bacterias y sólidos disueltos.</p>
+      </div>
+      <div class="stage">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="n">ETAPA 05</div>
+        <h4>Post-filtro de carbón</h4>
+        <p>Pule el sabor del agua justo antes de salir por la llave, para total frescura.</p>
+      </div>
+      <div class="stage">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4c0 0 5 5.5 5 9a5 5 0 0 1-10 0c0-3.5 5-9 5-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v5M9.5 12.5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="n">ETAPA 06</div>
+        <h4>Mineralizador</h4>
+        <p>Devuelve minerales esenciales y equilibra el pH: agua ligera y de excelente sabor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUTAWAY -->
+<section id="dentro" class="house-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Por dentro</span>
+      <h2>Qué hay dentro de un filtro de tanque</h2>
+      <p>Un filtro purificador no es solo un tanque: por dentro lleva varias capas de material, y cada una hace un trabajo distinto. Así queda el agua limpia paso a paso.</p>
+    </div>
+    <div class="cut-grid">
+      <img class="cut-svg" src="img/filtro-dentro.jpg" alt="Filtro de tanque cortado mostrando sus capas: difusor, carbón, sílice, gravilla y grava">
+
+      <ul class="cut-legend">
+        <li><span class="n">1</span><div><h4>Válvula y difusor superior</h4><p>Reparte el agua de entrada de forma pareja por todo el tanque.</p></div></li>
+        <li><span class="n">2</span><div><h4>Carbón activado</h4><p>Quita el cloro, los olores y los malos sabores del agua.</p></div></li>
+        <li><span class="n">3</span><div><h4>Arena sílice</h4><p>Retiene los sedimentos y las partículas finas en suspensión.</p></div></li>
+        <li><span class="n">4</span><div><h4>Gravilla</h4><p>Atrapa las partículas medianas y da soporte al lecho filtrante.</p></div></li>
+        <li><span class="n">5</span><div><h4>Grava (base)</h4><p>Sostiene todo el material y ayuda a drenar el agua ya limpia.</p></div></li>
+        <li><span class="n">6</span><div><h4>Tubo distribuidor central</h4><p>Recoge el agua filtrada del fondo y la lleva hasta la salida.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section>
+  <div class="wrap">
+    <div class="install">
+      <div>
+        <span class="badge">Ten en cuenta</span>
+        <h2>Se instala fácil en tu casa o negocio</h2>
+        <p>Nuestros equipos están pensados para una instalación sencilla. Importante: la instalación <b>no está incluida</b> y no la realizamos nosotros — la puedes hacer tú o un plomero de confianza. Con gusto te orientamos por WhatsApp.</p>
+      </div>
+      <ul>
+        <li><b>Solo venta:&nbsp;</b>vendemos el equipo; la instalación corre por tu cuenta.</li>
+        <li><b>Fácil de montar:&nbsp;</b>diseñado para instalarse sin complicaciones.</li>
+        <li><b>Te orientamos:&nbsp;</b>dudas de instalación, escríbenos por WhatsApp.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section id="materiales">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Materiales filtrantes</span>
+      <h2>Todo el material, también por saco</h2>
+      <p>¿Ya tienes tus tanques? Vendemos cada material por separado para que recargues o armes tu propio sistema. Estos son los más usados:</p>
+    </div>
+    <div class="grid-media">
+      <div class="mcard">
+        <div class="art"><img src="img/media.jpg" alt="Carbón activado"></div>
+        <div class="b"><h4>Carbón activado</h4><p>Quita cloro, olores y sabores.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="art"><img src="img/silice.jpg" alt="Arena sílice"></div>
+        <div class="b"><h4>Sílice</h4><p>Retiene sedimentos y partículas finas.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="art"><img src="img/grava.jpg" alt="Grava para filtro"></div>
+        <div class="b"><h4>Grava</h4><p>Soporte del lecho y drenaje del agua.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="art"><img src="img/gravilla.jpg" alt="Gravilla para filtro"></div>
+        <div class="b"><h4>Gravilla</h4><p>Filtra las partículas medianas.</p></div>
+      </div>
+      <div class="mcard">
+        <div class="art"><img src="img/arenilla.jpg" alt="Arenilla fina"></div>
+        <div class="b"><h4>Arenilla</h4><p>Afina el filtrado de sedimentos.</p></div>
+      </div>
+    </div>
+    <div class="media-cta">
+      <a class="btn btn-wa" href="https://wa.me/584147676618?text=Hola,%20quiero%20consultar%20materiales%20filtrantes%20por%20saco" target="_blank" rel="noopener">Consultar materiales por saco</a>
+    </div>
+  </div>
+</section>
+
+<!-- USES -->
+<section id="usos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Para quién</span>
+      <h2>Agua buena para la casa y para el negocio</h2>
+    </div>
+    <div class="uses">
+      <div class="use">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 11 12 4l9 7M5 10v9h14v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>En tu hogar</h3>
+        <p>Deja de comprar botellones. Agua segura para beber, cocinar y para tu familia, directo del grifo.</p>
+        <ul><li>Mejor sabor y sin olor a cloro</li><li>Menos sarro en tuberías y electrodomésticos</li><li>Ahorro frente al agua embotellada</li></ul>
+      </div>
+      <div class="use">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M5 20V9l7-4 7 4v11M9 20v-5h6v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>En tu negocio</h3>
+        <p>Restaurantes, cafés, barberías, lavados y oficinas: agua tratada que cuida tus equipos y tu servicio.</p>
+        <ul><li>Sin sarro en cafeteras, calderas y grifería</li><li>Mejor sabor en bebidas y comida</li><li>Sistemas de mayor caudal a la medida</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="big">99%</div><div class="lbl">de contaminantes eliminados con ósmosis inversa</div></div>
+      <div class="stat"><div class="big">3–7</div><div class="lbl">etapas de filtración según el sistema</div></div>
+      <div class="stat"><div class="big">0</div><div class="lbl">botellones que comprar: ya no dependes del agua embotellada, la tienes en tu grifo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section style="padding-top:0" id="comprar">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Cómo comprar</span>
+      <h2>Comprar es muy fácil</h2>
+      <p>Sin complicaciones y todo por WhatsApp: eliges, nos escribes y coordinamos pago y entrega.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard">
+        <div class="stepn">1</div>
+        <h4>Elige tu equipo</h4>
+        <p>Mira los productos y toca "Ver detalles" para conocer cada uno y saber cuál te conviene.</p>
+      </div>
+      <div class="tcard">
+        <div class="stepn">2</div>
+        <h4>Escríbenos por WhatsApp</h4>
+        <p>Te decimos el precio, las formas de pago y el envío hasta tu ciudad. Resolvemos todas tus dudas.</p>
+      </div>
+      <div class="tcard">
+        <div class="stepn">3</div>
+        <h4>Coordinamos y listo</h4>
+        <p>Acordamos el pago y el envío, y recibes tu equipo para instalarlo en tu casa o negocio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIANZA: pagos, envíos, garantía, repuestos -->
+<section style="padding-top:0" id="pagos">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Compra con confianza</span>
+      <h2>Pagos, envíos y garantía</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h4>Formas de pago</h4>
+        <p>Elige la que más te convenga y te pasamos los datos.</p>
+        <div class="tags"><span class="tag">Pago Móvil</span><span class="tag">Transferencia</span><span class="tag">Zelle</span><span class="tag">Efectivo / Divisas</span></div>
+      </div>
+      <div class="info">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="17" r="1.6" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="17" r="1.6" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h4>Envíos y cobertura</h4>
+        <p>Enviamos a todo el país por encomienda y hacemos delivery en la zona. <b>[Tu ciudad]</b>.</p>
+        <div class="tags"><span class="tag">MRW</span><span class="tag">Zoom</span><span class="tag">Tealca</span><span class="tag">Delivery</span></div>
+      </div>
+      <div class="info">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Garantía</h4>
+        <p>Todos los equipos tienen garantía ante fallas de fábrica. Te respaldamos.</p>
+        <div class="tags"><span class="tag">Garantía [X] meses</span></div>
+      </div>
+      <div class="info">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14-5m2-2v4h-4M20 12a8 8 0 0 1-14 5m-2 2v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Repuestos</h4>
+        <p>Vendemos los filtros y materiales de repuesto para mantener tu equipo al día.</p>
+        <div class="tags"><span class="tag">Filtros</span><span class="tag">Materiales</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0" id="faq">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Dudas rápidas</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>¿Cada cuánto se cambian los filtros?</summary>
+        <p>Depende del uso y de la calidad del agua. En general, los filtros de sedimentos y carbón se cambian cada 6–12 meses, y la membrana de ósmosis dura entre 2 y 3 años. Te avisamos cuáles tocan y te los vendemos.</p>
+      </details>
+      <details>
+        <summary>¿Ustedes instalan el equipo?</summary>
+        <p>No. Vendemos el equipo listo para instalar; la instalación la puedes hacer tú o un plomero de confianza. Con gusto te orientamos por WhatsApp.</p>
+      </details>
+      <details>
+        <summary>¿Sirve para agua de pozo o de camión cisterna?</summary>
+        <p>Sí. Para agua con muchos sedimentos recomendamos el combo desbarrador + purificador o un filtro de tanque a la entrada, y la ósmosis para el agua de beber.</p>
+      </details>
+      <details>
+        <summary>¿Hacen envíos a otras ciudades?</summary>
+        <p>Sí, enviamos a todo el país por encomienda (MRW, Zoom, Tealca). Coordinamos todo por WhatsApp.</p>
+      </details>
+      <details>
+        <summary>¿Qué formas de pago aceptan?</summary>
+        <p>Pago Móvil, transferencia bancaria, Zelle y efectivo en divisas. Escríbenos y te indicamos los datos.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="contacto" style="padding-top:0">
+  <div class="wrap">
+    <div class="final-cta">
+      <span class="eyebrow">Presupuesto sin compromiso</span>
+      <h2>¿Listo para tener agua cristalina?</h2>
+      <p>Cuéntanos si es para tu casa o tu negocio y te recomendamos el sistema ideal para ti.</p>
+      <a class="btn btn-wa" href="https://wa.me/584147676618?text=Hola,%20quiero%20un%20presupuesto%20de%20filtros%20de%20agua" target="_blank" rel="noopener" style="font-size:1.08rem;padding:.95em 1.7em">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7a11.7 11.7 0 0 1-4.9-4.3c-.4-.6-.9-1.5-.9-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.7 1.2 1.5 1.7 2.6 2.3.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.3.1.6-.1 1Z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<a class="wa-float" href="https://wa.me/584147676618?text=Hola,%20quiero%20información%20sobre%20los%20filtros%20de%20agua" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7a11.7 11.7 0 0 1-4.9-4.3c-.4-.6-.9-1.5-.9-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.7 1.2 1.5 1.7 2.6 2.3.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.3.1.6-.1 1Z"/></svg>
+  <span class="lbl">Escríbenos</span>
+</a>
+
+<!-- MODAL -->
+<div class="modal" id="prodModal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <button class="modal-x" data-close aria-label="Cerrar">&times;</button>
+    <div class="modal-media" id="pmMedia"></div>
+    <div class="modal-body">
+      <span class="eyebrow">Ficha del producto</span>
+      <h3 id="pmTitle"></h3>
+      <div id="pmContent"></div>
+      <a class="btn btn-wa" id="pmWa" href="#" target="_blank" rel="noopener" style="margin-top:1.2rem">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:.7rem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5C12 2.5 5 10 5 15a7 7 0 0 0 14 0c0-5-7-12.5-7-12.5Z" fill="var(--accent)"/></svg>
+          <span>AquaPura</span>
+        </a>
+        <p>Venta de filtros y sistemas de purificación de agua para hogar y negocio.</p>
+      </div>
+      <div>
+        <h5>Productos</h5>
+        <a href="#productos">Ósmosis inversa</a>
+        <a href="#productos">Purificador bajo fregadero</a>
+        <a href="#productos">Filtro 10×54</a>
+        <a href="#productos">Combos y tanques</a>
+        <a href="#productos">Materiales filtrantes</a>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <a href="https://wa.me/584147676618" target="_blank" rel="noopener">WhatsApp: +58 414-7676618</a>
+        <a href="mailto:hola@aquapura.com">hola@aquapura.com</a>
+        <p>Solo venta · Asesoría por WhatsApp</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AquaPura · Filtración de agua</span>
+      <span class="note">Nombre de marca de ejemplo — pendiente el definitivo.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ba=document.getElementById('ba'), handle=document.getElementById('baHandle');
+  function setPos(x){
+    var r=ba.getBoundingClientRect();
+    var pct=Math.max(4,Math.min(96,((x-r.left)/r.width)*100));
+    ba.style.setProperty('--pos',pct+'%');
+    handle.setAttribute('aria-valuenow',Math.round(pct));
+  }
+  var dragging=false;
+  function down(e){dragging=true;setPos((e.touches?e.touches[0]:e).clientX);e.preventDefault();}
+  function move(e){if(dragging)setPos((e.touches?e.touches[0]:e).clientX);}
+  function up(){dragging=false;}
+  ba.addEventListener('mousedown',down);ba.addEventListener('touchstart',down,{passive:false});
+  window.addEventListener('mousemove',move);window.addEventListener('touchmove',move,{passive:false});
+  window.addEventListener('mouseup',up);window.addEventListener('touchend',up);
+  handle.addEventListener('keydown',function(e){
+    var cur=parseFloat(ba.style.getPropertyValue('--pos'))||50;
+    if(e.key==='ArrowLeft'){setPos(ba.getBoundingClientRect().left+ba.getBoundingClientRect().width*Math.max(4,cur-5)/100);e.preventDefault();}
+    if(e.key==='ArrowRight'){setPos(ba.getBoundingClientRect().left+ba.getBoundingClientRect().width*Math.min(96,cur+5)/100);e.preventDefault();}
+  });
+
+  var spots=[
+    {t:'Filtros de entrada — Combo desbarrador + purificador',d:'Dos tanques FRP 10×54 en la entrada del agua: el primero retiene arena, óxido y sedimentos; el segundo purifica con carbón. Protegen toda la casa y las tuberías.'},
+    {t:'Bajo el fregadero — Purificador de 3 etapas u ósmosis',d:'Debajo del lavaplatos va el sistema de ósmosis inversa o el purificador de 3 carcasas, con su tanque de almacenamiento. Agua lista para beber y cocinar.'},
+    {t:'Grifo de agua filtrada — cuello de cisne',d:'Un grifo de acero inoxidable independiente entrega el agua ya filtrada, sin mezclarla con la de la tubería normal.'}
+  ];
+  var card=document.getElementById('spotCard');
+  var btns=document.querySelectorAll('.hotspot');
+  function show(i){
+    btns.forEach(function(b){b.classList.toggle('active',+b.dataset.spot===i);});
+    card.innerHTML='<div class="num">'+(i+1)+'</div><div><h4>'+spots[i].t+'</h4><p>'+spots[i].d+'</p></div>';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.spot);});});
+
+  // product detail modal
+  var modal=document.getElementById('prodModal');
+  var pmMedia=document.getElementById('pmMedia'),pmTitle=document.getElementById('pmTitle'),pmContent=document.getElementById('pmContent'),pmWa=document.getElementById('pmWa');
+  var chk='<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function feat(){var o='<ul class="pm-feat">';for(var i=0;i<arguments.length;i++){o+='<li>'+chk+'<span>'+arguments[i]+'</span></li>';}return o+'</ul>';}
+  var INSIDE_SVG='<svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vista interna del sistema: filtros, mineralizador y bomba">'
+    +'<rect x="12" y="12" width="276" height="186" rx="12" fill="#1b1c1f"/>'
+    +'<rect x="20" y="18" width="260" height="40" rx="8" fill="#3a3d42" opacity=".5" stroke="#5a5d63"/>'
+    +'<g fill="#0e0f11" stroke="#2c2e33"><rect x="34" y="24" width="52" height="150" rx="8"/><rect x="92" y="24" width="52" height="150" rx="8"/><rect x="150" y="24" width="52" height="150" rx="8"/><rect x="208" y="24" width="52" height="150" rx="8"/></g>'
+    +'<g fill="#232427"><rect x="40" y="8" width="40" height="18" rx="4"/><rect x="98" y="8" width="40" height="18" rx="4"/><rect x="156" y="8" width="40" height="18" rx="4"/><rect x="214" y="8" width="40" height="18" rx="4"/></g>'
+    +'<g fill="none" stroke="#eef3f6" stroke-width="3" stroke-linecap="round" opacity=".9"><path d="M96 60 C110 60 110 83 120 83"/><path d="M240 83 C258 83 258 117 240 117"/><path d="M120 117 C104 117 100 150 120 165"/><path d="M206 165 C230 165 240 150 240 130"/></g>'
+    +'<rect x="120" y="70" width="120" height="26" rx="13" fill="#ffffff" stroke="#cfd8dd"/><rect x="120" y="70" width="120" height="10" rx="5" fill="#e8f2f8"/>'
+    +'<text x="180" y="87" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="7" fill="#2b7bb8">SABOR Y OLOR - CARBON</text>'
+    +'<rect x="120" y="104" width="120" height="26" rx="13" fill="#ffffff" stroke="#cfd8dd"/><rect x="120" y="104" width="120" height="10" rx="5" fill="#fde3c7"/>'
+    +'<text x="180" y="121" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="7" fill="#d3812a">MINERALIZADOR</text>'
+    +'<rect x="120" y="150" width="86" height="30" rx="8" fill="#111214" stroke="#33363b"/><circle cx="135" cy="165" r="8" fill="#2a2c30" stroke="#4a4d52"/>'
+    +'<text x="178" y="169" text-anchor="middle" font-family="Spline Sans Mono, monospace" font-size="6.5" fill="#9fd0ea">BOMBA BOOSTER</text>'
+    +'<rect x="34" y="150" width="40" height="30" rx="5" fill="#0c0d0f" stroke="#33363b"/>'
+    +'<g fill="#2f86c9"><circle cx="120" cy="83" r="3"/><circle cx="240" cy="117" r="3"/></g></svg>';
+  var PROD={
+    compacto:{title:'Sistema Ósmosis Compacto (aguatogo)',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesa%20el%20Sistema%20de%20Ósmosis%20Compacto%20(aguatogo)',
+      html:'<p class="pm-lead">Es un equipo de ósmosis inversa donde todo va integrado y protegido dentro de una caja: las membranas, la bomba, el mineralizador y los filtros. Se ve ordenado y ocupa poco espacio.</p>'
+        +'<div class="pm-sub">¿Para qué sirve?</div>'+feat('Agua ultra pura para beber y cocinar, sin cloro ni sabores raros.','Devuelve minerales y equilibra el pH: agua ligera y de buen sabor.','La bomba da más presión y caudal, incluso con poca presión de red.')
+        +'<div class="pm-sub">¿En qué se diferencia del sistema abierto?</div>'+feat('Viene cerrado en una caja: más limpio y estético, sin filtros a la vista.','Trae bomba booster incorporada.','Ideal si quieres algo compacto y bonito bajo el fregadero o en la encimera.')},
+    osmosis6:{title:'Ósmosis Inversa 6 etapas',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesa%20el%20sistema%20de%20Ósmosis%20Inversa%206%20etapas',
+      html:'<p class="pm-lead">Sistema de ósmosis inversa de 6 etapas, con tanque de almacenamiento y grifo cuello de cisne. Deja el agua lista para beber y cocinar.</p>'
+        +'<div class="pm-sub">Las 6 etapas</div>'+feat('1. Sedimentos: retiene arena, tierra y óxido.','2. Carbón granular: quita cloro, olores y sabores.','3. Carbón en bloque: refuerza y atrapa impurezas microscópicas.','4. Membrana: elimina hasta el 99% de metales, bacterias y sólidos disueltos.','5. Post-filtro: pule el sabor final.','6. Mineralizador: devuelve minerales y equilibra el pH.')},
+    purificador3:{title:'Purificador bajo fregadero (3 etapas)',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesa%20el%20Purificador%20bajo%20fregadero%20de%203%20etapas',
+      html:'<p class="pm-lead">Purificador de 3 etapas para instalar bajo el fregadero, con su grifo de acero inoxidable aparte.</p>'
+        +'<div class="pm-sub">¿Para qué sirve?</div>'+feat('Mejora mucho el sabor y quita el cloro.','3 etapas: sedimentos, carbón activado y pulido final.','Ideal si quieres agua rica sin llegar a la ósmosis.')},
+    filtro1054:{title:'Filtro Purificador 10×54',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesa%20el%20Filtro%20Purificador%2010x54',
+      html:'<p class="pm-lead">Filtro de tanque FRP 10×54 con válvula 3/4. Se instala en la entrada del agua y protege toda la casa.</p>'
+        +'<div class="pm-sub">Qué hace</div>'+feat('Elimina sedimentos, químicos y microorganismos.','Incluye su material filtrante.','Se instala en la entrada del agua (instalación no incluida).')},
+    combo:{title:'Combo Desbarrador + Purificador',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesa%20el%20Combo%20Desbarrador%20+%20Purificador',
+      html:'<p class="pm-lead">Dos tanques FRP 10×54 trabajando juntos: uno desbarra y el otro purifica. Protege toda la vivienda.</p>'
+        +'<div class="pm-sub">Incluye</div>'+feat('Desbarrador: grava, gravilla, arenilla y sílice.','Purificante: grava, gravilla y carbón (saco 18 kg).','2 válvulas plateadas y difusores.','Se instala en la entrada del agua (instalación no incluida).')},
+    tanques:{title:'Tanques FRP',wa:'https://wa.me/584147676618?text=Hola,%20me%20interesan%20los%20Tanques%20FRP',
+      html:'<p class="pm-lead">Tanques de fibra FRP en 9×35 y 10×54 para armar o ampliar tu propio sistema de filtración.</p>'
+        +'<div class="pm-sub">Para quién</div>'+feat('Resistentes, para uso doméstico o comercial.','Elige el tamaño según tu consumo.','Combínalos con nuestros materiales filtrantes.')}
+  };
+  var lastFocus=null;
+  function openModal(id){
+    var d=PROD[id];if(!d)return;
+    pmTitle.textContent=d.title;pmContent.innerHTML=d.html;pmWa.href=d.wa;
+    if(id==='compacto'){
+      pmMedia.innerHTML='<div class="pm-gallery"><figure><img src="img/aguatogo-box.webp" alt="Sistema aguatogo por fuera"><figcaption>Por fuera</figcaption></figure><figure><img src="img/aguatogo-inside.webp" alt="Interior del sistema: filtros, mineralizador y bomba"><figcaption>Por dentro</figcaption></figure></div>';
+    }else{
+      var src=document.querySelector('[data-modal="'+id+'"] img')||document.querySelector('[data-modal="'+id+'"] svg');
+      pmMedia.innerHTML=src?src.outerHTML:'';
+    }
+    lastFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';
+    modal.querySelector('.modal-x').focus();
+  }
+  function closeModal(){modal.hidden=true;document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  document.querySelectorAll('[data-modal]').forEach(function(el){
+    el.addEventListener('click',function(){openModal(el.dataset.modal);});
+    el.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&el.getAttribute('role')==='button'){e.preventDefault();openModal(el.dataset.modal);}});
+  });
+  modal.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))closeModal();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal();});
+})();
+</script>
