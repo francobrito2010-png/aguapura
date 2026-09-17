@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>AquaPura · Back office</title>
 <style>
 :root{--accent:#0e7bb8;--accent-deep:#0a5d8e;--ink:#0e2733;--soft:#51666f;--line:#dde5ea;--bg:#eef3f6;--card:#fff;--wa:#22a45b;--danger:#c0392b}
@@ -119,7 +120,7 @@ function tryUnlock(){
 $("#unlock").addEventListener("click",tryUnlock);
 $("#pass").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock();});
 function showApp(){$("#lock").style.display="none";$("#app").hidden=false;$("#bar").hidden=false;load();}
-if(sessionStorage.getItem("aquapura_admin")==="1"){showApp();}
+showApp(); // sin contraseña: entra directo
 
 /* ---------- LOAD ---------- */
 function load(){
