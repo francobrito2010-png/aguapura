@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AquaPura · Back office</title>
+<style>
+:root{--accent:#0e7bb8;--accent-deep:#0a5d8e;--ink:#0e2733;--soft:#51666f;--line:#dde5ea;--bg:#eef3f6;--card:#fff;--wa:#22a45b;--danger:#c0392b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+.wrap{width:min(920px,94vw);margin:0 auto;padding:1rem 0 6rem}
+h1{font-size:1.5rem;margin:.2rem 0}
+h2{font-size:1.15rem;margin:0 0 .2rem}
+.muted{color:var(--soft);font-size:.9rem}
+.topbar{position:sticky;top:0;z-index:5;background:var(--accent);color:#fff;padding:.7rem 0}
+.topbar .wrap{padding:0;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar b{font-size:1.15rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.15rem;margin-top:1rem}
+label{display:block;font-weight:600;font-size:.9rem;margin:.7rem 0 .25rem}
+input[type=text],input[type=tel],textarea{width:100%;padding:.6em .7em;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;color:inherit}
+textarea{min-height:64px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:560px){.row2{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:.4em;border:0;border-radius:999px;padding:.6em 1.05em;font:inherit;font-weight:700;cursor:pointer;background:var(--accent);color:#fff}
+.btn:hover{background:var(--accent-deep)}
+.btn.sec{background:#e7eef3;color:var(--ink)}
+.btn.sec:hover{background:#d8e3ea}
+.btn.wa{background:var(--wa)}
+.btn.mini{padding:.35em .7em;font-size:.85rem;font-weight:600}
+.btn.danger{background:#fbeae8;color:var(--danger)}
+.prod{border:1px solid var(--line);border-radius:12px;margin-top:.9rem;overflow:hidden}
+.prod-head{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:#f6f9fb;cursor:pointer}
+.prod-head .nm{font-weight:700;flex:1}
+.prod-head .pr{color:var(--soft);font-size:.9rem}
+.prod-body{padding:.9rem}
+.prod-body[hidden]{display:none}
+.thumb{width:96px;height:96px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px}
+.imgrow{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:.35em;background:#eef3f6;border:1px solid var(--line);border-radius:8px;padding:.3em .5em;font-size:.85rem}
+.gal{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem}
+.gal figure{margin:0;width:110px;text-align:center}
+.gal img{width:110px;height:90px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px}
+.sec-block{border:1px dashed var(--line);border-radius:10px;padding:.7rem;margin-top:.6rem}
+.actionbar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:.7rem 0;z-index:6;box-shadow:0 -6px 20px -12px rgba(0,0,0,.3)}
+.actionbar .wrap{padding:0;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.actionbar .msg{margin-right:auto;font-size:.85rem;color:var(--soft)}
+.help{background:#eaf4fb;border:1px solid #cfe6f6;border-radius:10px;padding:.7rem .85rem;font-size:.9rem;color:#0a4a70}
+.lock{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;z-index:20}
+.lock .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.6rem;max-width:340px;width:90%}
+small.hint{color:var(--soft);font-size:.8rem}
+</style>
+</head>
+<body>
+
+<div class="lock" id="lock">
+  <div class="box">
+    <h2>🔒 Panel de AquaPura</h2>
+    <p class="muted">Introduce la clave para editar la web.</p>
+    <input type="text" id="pass" placeholder="Clave" autocomplete="off">
+    <div style="margin-top:.8rem"><button class="btn" id="unlock">Entrar</button></div>
+    <p id="passerr" class="muted" style="color:var(--danger);display:none">Clave incorrecta.</p>
+  </div>
+</div>
+
+<div class="topbar"><div class="wrap"><b>🛠️ Back office · AquaPura</b><span style="font-size:.85rem;opacity:.9">Edita y publica tu web</span></div></div>
+
+<div class="wrap" id="app" hidden>
+  <div class="help">
+    <b>¿Cómo funciona?</b> Cambia lo que quieras (textos, precios, fotos, productos). Usa <b>Vista previa</b> para ver cómo queda.
+    Cuando esté listo, pulsa <b>Descargar cambios</b> y pásale el archivo <code>data.json</code> a Franco para publicarlo. ¡Y listo!
+  </div>
+
+  <div class="panel">
+    <h2>📞 Contacto</h2>
+    <p class="muted">Estos datos salen en toda la web y en los botones de WhatsApp.</p>
+    <div class="row2">
+      <div><label>WhatsApp (solo números, con código país)</label><input type="tel" data-contact="whatsapp" placeholder="584147676618"></div>
+      <div><label>Ciudad / zona de envío</label><input type="text" data-contact="city" placeholder="Ej: Maracaibo, Zulia"></div>
+    </div>
+    <label>Garantía (texto)</label><input type="text" data-contact="warranty" placeholder="Ej: 12 meses">
+  </div>
+
+  <div class="panel">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+      <div><h2>📦 Productos</h2><p class="muted" style="margin:0">Toca un producto para abrir/editar. Puedes reordenarlos, editarlos o añadir nuevos.</p></div>
+      <button class="btn" data-act="addProduct" type="button">＋ Añadir producto</button>
+    </div>
+    <div id="prods"></div>
+  </div>
+</div>
+
+<div class="actionbar" id="bar" hidden>
+  <div class="wrap">
+    <span class="msg" id="msg"></span>
+    <button class="btn sec" id="preview" type="button">👁️ Vista previa</button>
+    <button class="btn sec" id="savedraft" type="button">💾 Guardar borrador</button>
+    <button class="btn wa" id="download" type="button">⬇️ Descargar cambios (data.json)</button>
+  </div>
+</div>
+
+<script>
+var PASSWORD="aquapura2026"; // cámbiala si quieres (aquí en el código)
+var DEFAULTS={contact:{whatsapp:"584147676618",city:"",warranty:""},products:[
+ {id:"compacto",name:"Sistema Ósmosis Compacto",price:"$220",img:"img/aguatogo-box.webp",specs:["CAJA COMPACTA","CON BOMBA","MINERALIZADOR"],desc:"Equipo de ósmosis inversa tipo caja: bomba, membrana, mineralizador y todas las etapas en una sola carcasa.",lead:"Es un equipo de ósmosis inversa donde todo va integrado dentro de una caja.",sections:[{h:"¿Para qué sirve?",items:["Agua ultra pura para beber y cocinar."]}],gallery:[{src:"img/aguatogo-box.webp",cap:"Por fuera"},{src:"img/aguatogo-inside.webp",cap:"Por dentro"}]}
+]};
+var data=null, msgEl;
+
+function $(s,c){return (c||document).querySelector(s);}
+function el(tag,attrs,html){var e=document.createElement(tag);if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e;}
+function slug(s){return (s||"prod").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||("p"+Date.now());}
+function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":s);return d.innerHTML;}
+
+/* ---------- LOCK ---------- */
+function tryUnlock(){
+  if($("#pass").value===PASSWORD){sessionStorage.setItem("aquapura_admin","1");showApp();}
+  else{$("#passerr").style.display="block";}
+}
+$("#unlock").addEventListener("click",tryUnlock);
+$("#pass").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock();});
+function showApp(){$("#lock").style.display="none";$("#app").hidden=false;$("#bar").hidden=false;load();}
+if(sessionStorage.getItem("aquapura_admin")==="1"){showApp();}
+
+/* ---------- LOAD ---------- */
+function load(){
+  msgEl=$("#msg");
+  var draft=null; try{draft=JSON.parse(localStorage.getItem("aquapura_draft"));}catch(e){}
+  if(draft&&draft.products){ data=draft; fill(); flash("Cargado tu borrador guardado."); return; }
+  fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(function(d){data=d;fill();})
+    .catch(function(){data=JSON.parse(JSON.stringify(DEFAULTS));fill();flash("No se pudo cargar data.json; empezando con lo básico.");});
+}
+function fill(){
+  if(!data.contact)data.contact={whatsapp:"",city:"",warranty:""};
+  document.querySelectorAll("[data-contact]").forEach(function(i){i.value=data.contact[i.getAttribute("data-contact")]||"";});
+  renderProducts();
+}
+
+/* ---------- RENDER PRODUCTS ---------- */
+function renderProducts(){
+  var c=$("#prods");c.innerHTML="";
+  (data.products||[]).forEach(function(p,pi){c.appendChild(prodCard(p,pi));});
+}
+function prodCard(p,pi){
+  var d=el("div",{class:"prod"});
+  var head=el("div",{class:"prod-head"},'<span class="nm">'+esc(p.name||"(sin nombre)")+'</span><span class="pr">'+esc(p.price||"")+'</span><span class="btn sec mini" data-act="toggle" data-pi="'+pi+'">Editar ▾</span>');
+  var body=el("div",{class:"prod-body",hidden:"hidden"});
+  var gal=(p.gallery||[]).map(function(g,gi){return '<figure><img src="'+esc(g.src)+'"><br><input type="text" data-pi="'+pi+'" data-field="galcap" data-gi="'+gi+'" value="'+esc(g.cap||"")+'" placeholder="pie de foto" style="width:100px;font-size:.8rem;margin-top:.2rem"><br><button class="btn danger mini" data-act="delGal" data-pi="'+pi+'" data-gi="'+gi+'" type="button" style="margin-top:.2rem">Quitar</button></figure>';}).join("");
+  var secs=(p.sections||[]).map(function(s,si){return '<div class="sec-block"><label>Título de la sección</label><input type="text" data-pi="'+pi+'" data-field="seclabel" data-si="'+si+'" value="'+esc(s.h||"")+'" placeholder="Ej: ¿Para qué sirve?"><label>Puntos (uno por línea)</label><textarea data-pi="'+pi+'" data-field="secitems" data-si="'+si+'" placeholder="Un beneficio por línea">'+esc((s.items||[]).join("\n"))+'</textarea><button class="btn danger mini" data-act="delSection" data-pi="'+pi+'" data-si="'+si+'" type="button" style="margin-top:.4rem">Quitar sección</button></div>';}).join("");
+  body.innerHTML=''
+    +'<div class="imgrow"><img class="thumb" src="'+esc(p.img||"")+'" onerror="this.style.opacity=.3"><div><label style="margin-top:0">Imagen principal (la de la tarjeta)</label><input type="file" accept="image/*" data-pi="'+pi+'" data-imgrole="main"><br><small class="hint">Elige una foto de tu teléfono o PC.</small></div></div>'
+    +'<div class="row2"><div><label>Nombre</label><input type="text" data-pi="'+pi+'" data-field="name" value="'+esc(p.name||"")+'"></div><div><label>Precio</label><input type="text" data-pi="'+pi+'" data-field="price" value="'+esc(p.price||"")+'" placeholder="$150 o desde $60"></div></div>'
+    +'<label>Descripción corta (en la tarjeta)</label><textarea data-pi="'+pi+'" data-field="desc">'+esc(p.desc||"")+'</textarea>'
+    +'<label>Etiquetas / specs (separadas por coma)</label><input type="text" data-pi="'+pi+'" data-field="specs" value="'+esc((p.specs||[]).join(", "))+'" placeholder="6 ETAPAS, MINERALIZADOR">'
+    +'<hr style="border:0;border-top:1px solid var(--line);margin:1rem 0"><b>Detalles (ventana "Ver detalles")</b>'
+    +'<label>Intro</label><textarea data-pi="'+pi+'" data-field="lead">'+esc(p.lead||"")+'</textarea>'
+    +'<div data-secs="'+pi+'">'+secs+'</div><button class="btn sec mini" data-act="addSection" data-pi="'+pi+'" type="button" style="margin-top:.4rem">＋ Añadir sección</button>'
+    +'<label style="margin-top:1rem">Galería del detalle (opcional, ej: "por fuera / por dentro")</label><div class="gal">'+gal+'</div><input type="file" accept="image/*" data-pi="'+pi+'" data-imgrole="gal" style="margin-top:.4rem"><br><small class="hint">Si añades fotos aquí, la ventana mostrará varias. Si no, muestra solo la principal.</small>'
+    +'<div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn sec mini" data-act="up" data-pi="'+pi+'" type="button">⬆︎ Subir</button><button class="btn sec mini" data-act="down" data-pi="'+pi+'" type="button">⬇︎ Bajar</button><button class="btn danger mini" data-act="delProduct" data-pi="'+pi+'" type="button">🗑 Eliminar producto</button></div>';
+  d.appendChild(head);d.appendChild(body);
+  return d;
+}
+
+/* ---------- EVENTS ---------- */
+document.addEventListener("input",function(e){
+  var t=e.target;
+  if(t.hasAttribute&&t.hasAttribute("data-contact")){data.contact[t.getAttribute("data-contact")]=t.value;return;}
+  var pi=t.getAttribute&&t.getAttribute("data-pi");if(pi==null)return;pi=+pi;var p=data.products[pi];if(!p)return;
+  var f=t.getAttribute("data-field");
+  if(f==="specs")p.specs=t.value.split(",").map(function(s){return s.trim();}).filter(Boolean);
+  else if(f==="seclabel"){var si=+t.getAttribute("data-si");p.sections[si].h=t.value;}
+  else if(f==="secitems"){var si2=+t.getAttribute("data-si");p.sections[si2].items=t.value.split("\n").map(function(s){return s.trim();}).filter(Boolean);}
+  else if(f==="galcap"){var gi=+t.getAttribute("data-gi");p.gallery[gi].cap=t.value;}
+  else if(f){p[f]=t.value; if(f==="name"){var h=t.closest(".prod").querySelector(".nm");if(h)h.textContent=t.value||"(sin nombre)";} if(f==="price"){var pr=t.closest(".prod").querySelector(".pr");if(pr)pr.textContent=t.value;}}
+});
+document.addEventListener("change",function(e){
+  var t=e.target;if(t.type!=="file"||!t.files||!t.files[0])return;
+  var pi=+t.getAttribute("data-pi");var role=t.getAttribute("data-imgrole");
+  var rd=new FileReader();rd.onload=function(){
+    if(role==="main")data.products[pi].img=rd.result;
+    else{data.products[pi].gallery=data.products[pi].gallery||[];data.products[pi].gallery.push({src:rd.result,cap:""});}
+    renderProducts();flash("Imagen añadida ✔");
+  };rd.readAsDataURL(t.files[0]);
+});
+document.addEventListener("click",function(e){
+  var b=e.target.closest&&e.target.closest("[data-act]");if(!b)return;
+  var act=b.getAttribute("data-act");var pi=b.getAttribute("data-pi");pi=(pi==null?null:+pi);
+  if(act==="toggle"){var body=b.closest(".prod").querySelector(".prod-body");body.hidden=!body.hidden;b.textContent=body.hidden?"Editar ▾":"Cerrar ▴";return;}
+  if(act==="addProduct"){data.products.push({id:"nuevo-"+Date.now(),name:"Nuevo producto",price:"",img:"",specs:[],desc:"",lead:"",sections:[]});renderProducts();flash("Producto añadido. Rellena sus datos.");window.scrollTo(0,document.body.scrollHeight);return;}
+  if(pi==null)return;var p=data.products[pi];
+  if(act==="delProduct"){if(confirm("¿Eliminar \""+(p.name||"")+"\"?")){data.products.splice(pi,1);renderProducts();}return;}
+  if(act==="up"&&pi>0){data.products.splice(pi-1,0,data.products.splice(pi,1)[0]);renderProducts();return;}
+  if(act==="down"&&pi<data.products.length-1){data.products.splice(pi+1,0,data.products.splice(pi,1)[0]);renderProducts();return;}
+  if(act==="addSection"){p.sections=p.sections||[];p.sections.push({h:"",items:[]});renderProducts();openProd(pi);return;}
+  if(act==="delSection"){var si=+b.getAttribute("data-si");p.sections.splice(si,1);renderProducts();openProd(pi);return;}
+  if(act==="delGal"){var gi=+b.getAttribute("data-gi");p.gallery.splice(gi,1);renderProducts();openProd(pi);return;}
+});
+function openProd(pi){var cards=document.querySelectorAll(".prod");if(cards[pi]){var body=cards[pi].querySelector(".prod-body");body.hidden=false;var tg=cards[pi].querySelector('[data-act="toggle"]');if(tg)tg.textContent="Cerrar ▴";}}
+
+/* ---------- CLEAN + IDS ---------- */
+function cleaned(){
+  var d=JSON.parse(JSON.stringify(data));
+  (d.products||[]).forEach(function(p){
+    if(!p.id||/^nuevo-/.test(p.id))p.id=slug(p.name);
+    if(p.gallery&&p.gallery.length===0)delete p.gallery;
+    if(p.sections)p.sections=p.sections.filter(function(s){return s.h||(s.items&&s.items.length);});
+  });
+  // ids únicos
+  var seen={};(d.products||[]).forEach(function(p){var b=p.id;var n=1;while(seen[p.id]){p.id=b+"-"+(++n);}seen[p.id]=1;});
+  return d;
+}
+
+/* ---------- ACTIONS ---------- */
+$("#savedraft").addEventListener("click",function(){localStorage.setItem("aquapura_draft",JSON.stringify(cleaned()));flash("Borrador guardado en este navegador ✔");});
+$("#preview").addEventListener("click",function(){try{localStorage.setItem("aquapura_preview",JSON.stringify(cleaned()));window.open("index.html?preview=1","_blank");}catch(e){alert("No se pudo abrir la vista previa.");}});
+$("#download").addEventListener("click",function(){
+  var d=cleaned();var blob=new Blob([JSON.stringify(d,null,2)],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="data.json";document.body.appendChild(a);a.click();a.remove();
+  flash("Descargado data.json ✔ Pásaselo a Franco para publicarlo.");
+});
+function flash(m){if(msgEl){msgEl.textContent=m;clearTimeout(flash._t);flash._t=setTimeout(function(){msgEl.textContent="";},4000);}}
+</script>
+</body>
+</html>

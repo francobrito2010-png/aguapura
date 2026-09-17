@@ -348,7 +348,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       <h2>Sistemas para cada necesidad</h2>
       <p>Desde un purificador bajo el fregadero hasta filtros de tanque para toda la vivienda o tu negocio. Escríbenos y te armamos el sistema ideal.</p>
     </div>
-    <div class="grid-prod">
+    <div class="grid-prod" id="gridProd">
 
       <article class="card">
         <div class="art clickable" data-modal="compacto" role="button" tabindex="0" aria-label="Ver detalles del Sistema Ósmosis Compacto">
@@ -672,14 +672,14 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       <div class="info">
         <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="17" r="1.6" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="17" r="1.6" stroke="currentColor" stroke-width="1.8"/></svg></div>
         <h4>Envíos y cobertura</h4>
-        <p>Enviamos a todo el país por encomienda y hacemos delivery en la zona. <b>[Tu ciudad]</b>.</p>
+        <p>Enviamos a todo el país por encomienda y hacemos delivery en la zona. <b id="cityText">[Tu ciudad]</b>.</p>
         <div class="tags"><span class="tag">MRW</span><span class="tag">Zoom</span><span class="tag">Tealca</span><span class="tag">Delivery</span></div>
       </div>
       <div class="info">
         <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h4>Garantía</h4>
         <p>Todos los equipos tienen garantía ante fallas de fábrica. Te respaldamos.</p>
-        <div class="tags"><span class="tag">Garantía [X] meses</span></div>
+        <div class="tags"><span class="tag" id="warrantyTag">Garantía [X] meses</span></div>
       </div>
       <div class="info">
         <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 14-5m2-2v4h-4M20 12a8 8 0 0 1-14 5m-2 2v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -778,7 +778,7 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
       </div>
       <div>
         <h5>Contacto</h5>
-        <a href="https://wa.me/584147676618" target="_blank" rel="noopener">WhatsApp: +58 414-7676618</a>
+        <a id="footWa" href="https://wa.me/584147676618" target="_blank" rel="noopener">WhatsApp: +58 414-7676618</a>
         <a href="mailto:hola@aquapura.com">hola@aquapura.com</a>
         <p>Solo venta · Asesoría por WhatsApp</p>
       </div>
@@ -867,24 +867,34 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
         +'<div class="pm-sub">Para quién</div>'+feat('Resistentes, para uso doméstico o comercial.','Elige el tamaño según tu consumo.','Combínalos con nuestros materiales filtrantes.')}
   };
   var lastFocus=null;
-  function openModal(id){
-    var d=PROD[id];if(!d)return;
-    pmTitle.textContent=d.title;pmContent.innerHTML=d.html;pmWa.href=d.wa+SITE;
-    if(id==='compacto'){
-      pmMedia.innerHTML='<div class="pm-gallery"><figure><img src="img/aguatogo-box.webp" alt="Sistema aguatogo por fuera"><figcaption>Por fuera</figcaption></figure><figure><img src="img/aguatogo-inside.webp" alt="Interior del sistema: filtros, mineralizador y bomba"><figcaption>Por dentro</figcaption></figure></div>';
-    }else{
-      var src=document.querySelector('[data-modal="'+id+'"] img')||document.querySelector('[data-modal="'+id+'"] svg');
-      pmMedia.innerHTML=src?src.outerHTML:'';
-    }
-    lastFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';
-    modal.querySelector('.modal-x').focus();
-  }
-  function closeModal(){modal.hidden=true;document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
-  document.querySelectorAll('[data-modal]').forEach(function(el){
-    el.addEventListener('click',function(){openModal(el.dataset.modal);});
-    el.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&el.getAttribute('role')==='button'){e.preventDefault();openModal(el.dataset.modal);}});
-  });
-  modal.addEventListener('click',function(e){if(e.target.hasAttribute('data-close'))closeModal();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeModal();});
+  // ---------- Contenido editable (el back office lo cambia en data.json) ----------
+  var DEFAULT_DATA={
+    contact:{whatsapp:'584147676618',city:'',warranty:''},
+    products:[
+      {id:'compacto',name:'Sistema Ósmosis Compacto',price:'$220',img:'img/aguatogo-box.webp',alt:'Sistema de ósmosis compacto aguatogo, caja turquesa',specs:['CAJA COMPACTA','CON BOMBA','MINERALIZADOR'],desc:'Equipo de ósmosis inversa tipo caja: bomba, membrana, mineralizador y todas las etapas integradas en una sola carcasa. Más caudal y agua mineralizada.',lead:'Es un equipo de ósmosis inversa donde todo va integrado y protegido dentro de una caja: las membranas, la bomba, el mineralizador y los filtros. Se ve ordenado y ocupa poco espacio.',sections:[{h:'¿Para qué sirve?',items:['Agua ultra pura para beber y cocinar, sin cloro ni sabores raros.','Devuelve minerales y equilibra el pH: agua ligera y de buen sabor.','La bomba da más presión y caudal, incluso con poca presión de red.']},{h:'¿En qué se diferencia del sistema abierto?',items:['Viene cerrado en una caja: más limpio y estético, sin filtros a la vista.','Trae bomba booster incorporada.','Ideal si quieres algo compacto y bonito bajo el fregadero o en la encimera.']}],gallery:[{src:'img/aguatogo-box.webp',cap:'Por fuera'},{src:'img/aguatogo-inside.webp',cap:'Por dentro'}]},
+      {id:'osmosis6',name:'Ósmosis Inversa 6 etapas',price:'$150',img:'img/ro5.jpg',alt:'Sistema de ósmosis inversa de 6 etapas con tanque',specs:['6 ETAPAS','MINERALIZADOR','+ TANQUE'],desc:'Seis etapas: sedimentos, carbón granular, carbón en bloque, membrana, post-filtro y mineralizador. Con tanque de almacenamiento y grifo cuello de cisne.',lead:'Sistema de ósmosis inversa de 6 etapas, con tanque de almacenamiento y grifo cuello de cisne. Deja el agua lista para beber y cocinar.',sections:[{h:'Las 6 etapas',items:['1. Sedimentos: retiene arena, tierra y óxido.','2. Carbón granular: quita cloro, olores y sabores.','3. Carbón en bloque: refuerza y atrapa impurezas microscópicas.','4. Membrana: elimina hasta el 99% de metales, bacterias y sólidos disueltos.','5. Post-filtro: pule el sabor final.','6. Mineralizador: devuelve minerales y equilibra el pH.']}]},
+      {id:'purificador3',name:'Purificador bajo fregadero',price:'$75',img:'img/tri3.jpg',alt:'Purificador bajo fregadero de 3 etapas con grifo',specs:['3 ETAPAS','BAJO FREGADERO','GRIFO INOX'],desc:'Tres etapas en carcasa: sedimentos, carbón activado y pulido final. Grifo de acero inoxidable incluido.',lead:'Purificador de 3 etapas para instalar bajo el fregadero, con su grifo de acero inoxidable aparte.',sections:[{h:'¿Para qué sirve?',items:['Mejora mucho el sabor y quita el cloro.','3 etapas: sedimentos, carbón activado y pulido final.','Ideal si quieres agua rica sin llegar a la ósmosis.']}]},
+      {id:'filtro1054',name:'Filtro Purificador 10×54',price:'$130',img:'img/tank.jpg',alt:'Filtro purificador de tanque azul 10x54',specs:['10×54','VÁLVULA 3/4','MATERIAL INCL.'],desc:'Tanque FRP con válvula 3/4 y material filtrante. Elimina sedimentos, químicos y microorganismos. Se instala en la entrada del agua de la casa.',lead:'Filtro de tanque FRP 10×54 con válvula 3/4. Se instala en la entrada del agua y protege toda la casa.',sections:[{h:'Qué hace',items:['Elimina sedimentos, químicos y microorganismos.','Incluye su material filtrante.','Se instala en la entrada del agua (instalación no incluida).']}]},
+      {id:'combo',name:'Combo Desbarrador + Purificador',price:'$240',img:'img/combo.jpg',alt:'Combo de dos filtros: desbarrador y purificador',specs:['2 TANQUES','2 VÁLVULAS','SACO 18KG'],desc:'Dos tanques FRP 10×54 con válvulas plateadas. Desbarrador (grava, arenilla, sílice) y purificante (carbón). Saco de 18 kg.',lead:'Dos tanques FRP 10×54 trabajando juntos: uno desbarra y el otro purifica. Protege toda la vivienda.',sections:[{h:'Incluye',items:['Desbarrador: grava, gravilla, arenilla y sílice.','Purificante: grava, gravilla y carbón (saco 18 kg).','2 válvulas plateadas y difusores.','Se instala en la entrada del agua (instalación no incluida).']}]},
+      {id:'tanques',name:'Tanques FRP',price:'desde $60',img:'img/tanks.jpg',alt:'Tanques FRP de fibra en varios tamaños',specs:['FRP','9×35','10×54'],desc:'Tanques de fibra 9×35 y 10×54 para armar tu propio sistema de filtración a la medida.',lead:'Tanques de fibra FRP en 9×35 y 10×54 para armar o ampliar tu propio sistema de filtración.',sections:[{h:'Para quién',items:['Resistentes, para uso doméstico o comercial.','Elige el tamaño según tu consumo.','Combínalos con nuestros materiales filtrantes.']}]}
+    ]
+  };
+  var DATA=DEFAULT_DATA;
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':s);return d.innerHTML;}
+  function cardHTML(p){return '<article class="card"><div class="art clickable" data-modal="'+esc(p.id)+'" role="button" tabindex="0" aria-label="Ver detalles: '+esc(p.name)+'"><img src="'+esc(p.img)+'" alt="'+esc(p.alt||p.name)+'"><span class="tap-hint">Toca para ver +</span></div><div class="body"><h3>'+esc(p.name)+'</h3><p class="desc">'+esc(p.desc)+'</p><div class="specs">'+(p.specs||[]).map(function(s){return '<span class="spec">'+esc(s)+'</span>';}).join('')+'</div><div class="foot"><span class="price">'+esc(p.price)+'</span><button class="mini-wa mini-detail" data-modal="'+esc(p.id)+'" type="button">Ver detalles</button></div></div></article>';}
+  function renderProducts(){var g=document.getElementById('gridProd');if(g)g.innerHTML=(DATA.products||[]).map(cardHTML).join('');}
+  function patchContact(){var num=(DATA.contact&&DATA.contact.whatsapp)||'584147676618';document.querySelectorAll('a[href*="wa.me/"]').forEach(function(a){a.href=a.href.replace(/wa\.me\/\d+/,'wa.me/'+num);});var c=document.getElementById('cityText');if(c)c.textContent=(DATA.contact&&DATA.contact.city)?DATA.contact.city:'[Tu ciudad]';var w=document.getElementById('warrantyTag');if(w)w.textContent=(DATA.contact&&DATA.contact.warranty)?('Garantía '+DATA.contact.warranty):'Garantía [X] meses';var fw=document.getElementById('footWa');if(fw){fw.href='https://wa.me/'+num;fw.textContent='WhatsApp: +'+num;}}
+  function mediaHTML(p){var g=(p.gallery&&p.gallery.length)?p.gallery:[{src:p.img,cap:''}];if(g.length>1){return '<div class="pm-gallery">'+g.map(function(x){return '<figure><img src="'+esc(x.src)+'" alt="'+esc(x.cap||p.name)+'">'+(x.cap?'<figcaption>'+esc(x.cap)+'</figcaption>':'')+'</figure>';}).join('')+'</div>';}return '<img src="'+esc(g[0].src)+'" alt="'+esc(p.name)+'">';}
+  function contentHTML(p){var h='<p class="pm-lead">'+esc(p.lead||p.desc)+'</p>';(p.sections||[]).forEach(function(s){if(!s||!s.h)return;h+='<div class="pm-sub">'+esc(s.h)+'</div><ul class="pm-feat">'+(s.items||[]).map(function(it){return '<li>'+chk+'<span>'+esc(it)+'</span></li>';}).join('')+'</ul>';});return h;}
+  function findP(id){for(var i=0;i<(DATA.products||[]).length;i++){if(DATA.products[i].id===id)return DATA.products[i];}return null;}
+  function openModal(id){var p=findP(id);if(!p||!modal)return;pmTitle.textContent=p.name;pmContent.innerHTML=contentHTML(p);pmMedia.innerHTML=mediaHTML(p);pmWa.href='https://wa.me/'+((DATA.contact&&DATA.contact.whatsapp)||'584147676618')+'?text='+encodeURIComponent('Hola, me interesa el '+p.name)+SITE;lastFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';var x=modal.querySelector('.modal-x');if(x)x.focus();}
+  function closeModal(){if(!modal)return;modal.hidden=true;document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+  document.addEventListener('click',function(e){var t=e.target.closest?e.target.closest('[data-modal]'):null;if(t){openModal(t.getAttribute('data-modal'));return;}if(e.target&&e.target.hasAttribute&&e.target.hasAttribute('data-close'))closeModal();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.hidden){closeModal();return;}var t=e.target;if((e.key==='Enter'||e.key===' ')&&t&&t.getAttribute&&t.getAttribute('data-modal')&&t.getAttribute('role')==='button'){e.preventDefault();openModal(t.getAttribute('data-modal'));}});
+  function applyAll(){renderProducts();patchContact();}
+  applyAll();
+  var previewed=false;
+  try{if(location.search.indexOf('preview=1')>=0){var pv=JSON.parse(localStorage.getItem('aquapura_preview'));if(pv&&pv.products){DATA=pv;applyAll();previewed=true;}}}catch(e){}
+  if(!previewed){fetch('data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){if(d&&d.products){DATA=d;if(!DATA.contact)DATA.contact=DEFAULT_DATA.contact;applyAll();}}).catch(function(){});}
 })();
 </script>
