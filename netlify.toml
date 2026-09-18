@@ -1,0 +1,9 @@
+# Sitio estático (sin build): Netlify publica la raíz del repo tal cual.
+[build]
+  publish = "."
+
+# Ícono de la pestaña y cabeceras básicas
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
