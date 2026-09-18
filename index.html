@@ -896,6 +896,13 @@ footer{border-top:1px solid var(--line);background:var(--surface)}
   applyAll();
   var previewed=false;
   try{if(location.search.indexOf('preview=1')>=0){var pv=JSON.parse(localStorage.getItem('aquapura_preview'));if(pv&&pv.products){DATA=pv;applyAll();previewed=true;}}}catch(e){}
-  if(!previewed){fetch('data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){if(d&&d.products){DATA=d;if(!DATA.contact)DATA.contact=DEFAULT_DATA.contact;applyAll();}}).catch(function(){});}
+  function useData(d){if(d&&d.products&&d.products.length){DATA=d;if(!DATA.contact)DATA.contact=DEFAULT_DATA.contact;applyAll();return true;}return false;}
+  if(!previewed){
+    fetch('/api/content',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
+      if(!useData(d))throw 0;
+    }).catch(function(){
+      fetch('data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(useData).catch(function(){});
+    });
+  }
 })();
 </script>

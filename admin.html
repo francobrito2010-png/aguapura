@@ -67,8 +67,8 @@ small.hint{color:var(--soft);font-size:.8rem}
 
 <div class="wrap" id="app" hidden>
   <div class="help">
-    <b>¿Cómo funciona?</b> Cambia lo que quieras (textos, precios, fotos, productos). Usa <b>Vista previa</b> para ver cómo queda.
-    Cuando esté listo, pulsa <b>Descargar cambios</b> y pásale el archivo <code>data.json</code> a Franco para publicarlo. ¡Y listo!
+    <b>Súper fácil:</b> cambia lo que quieras (precios, textos, fotos) y pulsa <b>✅ Realizar cambios</b>.
+    ¡Se actualiza sola en la página web en unos segundos! Si quieres, usa <b>👁️ Vista previa</b> para ver cómo queda antes.
   </div>
 
   <div class="panel">
@@ -94,13 +94,13 @@ small.hint{color:var(--soft);font-size:.8rem}
   <div class="wrap">
     <span class="msg" id="msg"></span>
     <button class="btn sec" id="preview" type="button">👁️ Vista previa</button>
-    <button class="btn sec" id="savedraft" type="button">💾 Guardar borrador</button>
-    <button class="btn wa" id="download" type="button">⬇️ Descargar cambios (data.json)</button>
+    <button class="btn" id="publish" type="button">✅ Realizar cambios</button>
   </div>
 </div>
 
 <script>
-var PASSWORD="aquapura2026"; // cámbiala si quieres (aquí en el código)
+var PASSWORD="aquapura2026"; // (ya no se usa: el panel entra directo)
+var PUBLISH_KEY="aguassica-k7q2mx9"; // el botón "Realizar cambios" lo envía solo
 var DEFAULTS={contact:{whatsapp:"584147676618",city:"",warranty:""},products:[
  {id:"compacto",name:"Sistema Ósmosis Compacto",price:"$220",img:"img/aguatogo-box.webp",specs:["CAJA COMPACTA","CON BOMBA","MINERALIZADOR"],desc:"Equipo de ósmosis inversa tipo caja: bomba, membrana, mineralizador y todas las etapas en una sola carcasa.",lead:"Es un equipo de ósmosis inversa donde todo va integrado dentro de una caja.",sections:[{h:"¿Para qué sirve?",items:["Agua ultra pura para beber y cocinar."]}],gallery:[{src:"img/aguatogo-box.webp",cap:"Por fuera"},{src:"img/aguatogo-inside.webp",cap:"Por dentro"}]}
 ]};
@@ -125,11 +125,11 @@ showApp(); // sin contraseña: entra directo
 /* ---------- LOAD ---------- */
 function load(){
   msgEl=$("#msg");
-  var draft=null; try{draft=JSON.parse(localStorage.getItem("aquapura_draft"));}catch(e){}
-  if(draft&&draft.products){ data=draft; fill(); flash("Cargado tu borrador guardado."); return; }
-  fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json();})
-    .then(function(d){data=d;fill();})
-    .catch(function(){data=JSON.parse(JSON.stringify(DEFAULTS));fill();flash("No se pudo cargar data.json; empezando con lo básico.");});
+  var fallback=function(){ fetch("data.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(x){data=x;fill();}).catch(function(){data=JSON.parse(JSON.stringify(DEFAULTS));fill();}); };
+  // Carga el contenido que está publicado ahora mismo (para editar sobre lo real)
+  fetch("/api/content",{cache:"no-store"}).then(function(r){return r.ok?r.json():Promise.reject();})
+    .then(function(d){ if(d&&d.products&&d.products.length){data=d;fill();} else {fallback();} })
+    .catch(fallback);
 }
 function fill(){
   if(!data.contact)data.contact={whatsapp:"",city:"",warranty:""};
@@ -212,12 +212,15 @@ function cleaned(){
 }
 
 /* ---------- ACTIONS ---------- */
-$("#savedraft").addEventListener("click",function(){localStorage.setItem("aquapura_draft",JSON.stringify(cleaned()));flash("Borrador guardado en este navegador ✔");});
 $("#preview").addEventListener("click",function(){try{localStorage.setItem("aquapura_preview",JSON.stringify(cleaned()));window.open("index.html?preview=1","_blank");}catch(e){alert("No se pudo abrir la vista previa.");}});
-$("#download").addEventListener("click",function(){
-  var d=cleaned();var blob=new Blob([JSON.stringify(d,null,2)],{type:"application/json"});
-  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="data.json";document.body.appendChild(a);a.click();a.remove();
-  flash("Descargado data.json ✔ Pásaselo a Franco para publicarlo.");
+$("#publish").addEventListener("click",function(){
+  var b=$("#publish"); if(b.disabled)return;
+  var payload=cleaned();
+  b.disabled=true; var old=b.textContent; b.textContent="Publicando…"; flash("Publicando tus cambios…");
+  fetch("/api/content",{method:"POST",headers:{"content-type":"application/json","x-aguassica-key":PUBLISH_KEY},body:JSON.stringify(payload)})
+    .then(function(r){return r.ok?r.json():Promise.reject(r);})
+    .then(function(){ b.disabled=false; b.textContent=old; flash("✅ ¡Listo! Tus cambios ya están en la página web."); })
+    .catch(function(){ b.disabled=false; b.textContent=old; flash("⚠️ No se pudo publicar. Revisa tu internet e inténtalo de nuevo."); });
 });
 function flash(m){if(msgEl){msgEl.textContent=m;clearTimeout(flash._t);flash._t=setTimeout(function(){msgEl.textContent="";},4000);}}
 </script>

@@ -2,6 +2,16 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# URL fácil para el panel: aguassica.netlify.app/admin
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
 # Ícono de la pestaña y cabeceras básicas
 [[headers]]
   for = "/*"
